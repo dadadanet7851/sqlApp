@@ -204,7 +204,7 @@ namespace SqlServerTestApp
 
         private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var items = DBConnectionService.SendQueryToSqlServer($"select [id соискателя], (Фамилия+' '+Имя+' '+Отчество) from Соискатели " +
+            var items = DBConnectionService.SendQueryToSqlServer($"select [id соискателя], (Фамилия+' '+Имя+' '+Отчество) from Соискатели " +       // Это не работает
                 $"where [id соискателя] = {dataGridView5.CurrentRow.Cells[1].Value}")?.Select(s => new IdentityItem(s[0], s[1]));
             SComboBox1.SelectedItem = items.FirstOrDefault();
             VComboBox1.Text = dataGridView5.CurrentRow.Cells[2].Value.ToString();
@@ -366,7 +366,7 @@ namespace SqlServerTestApp
             }
         }
 
-        private void vdComboBox_DropDown(object sender, EventArgs e)                                                      // Комбобокс "Виды деятельности"
+        private void vdComboBox_DropDown(object sender, EventArgs e)                                                      // Комбобокс "Вид деятельности"
         {
             string query = "select [id деятельности], [Вид деятельности] from [Виды деятельности]";
             var list = DBConnectionService.SendQueryToSqlServer(query)?.Select(row => new IdentityItem(row[0], row[1])).ToArray();
@@ -686,106 +686,6 @@ namespace SqlServerTestApp
             }
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox33_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label33_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label38_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void npComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void zpBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox36_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox31_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void fio_TextChanged(object sender, EventArgs e)                                                      // Ввод с заглавной
         {
             if (((TextBox)sender).Text.Length == 1)
@@ -796,7 +696,7 @@ namespace SqlServerTestApp
         private void fio_KeyPress(object sender, KeyPressEventArgs e)                                                 // Ввод только русских букв и BACKSPACE
         {
             char l = e.KeyChar;
-            if ((l < 'А' || l > 'я') && l != '\b')                                                                    // Как работает || (это же "или")
+            if ((l < 'А' || l > 'я') && l != '\b')
             {
                 e.Handled = true;
             }
@@ -808,21 +708,48 @@ namespace SqlServerTestApp
             ((MaskedTextBox)sender).SelectionLength = 0;
         }
 
-        private void zpBox_KeyPress(object sender, KeyPressEventArgs e)                                               // Ввод суммы денег (не готово, еще добавить (на форумах есть))
+        private void zpBox_KeyPress(object sender, KeyPressEventArgs e)                                               // Ввод суммы денег (не готово, еще можно добавить "руб.")
         {
             char l = e.KeyChar;
-            if ((!Char.IsDigit(l)) && l != '\b' && l != ',')  // Можно вводить цифры, BACKSPACE, только одну запятую ((TextBox)sender).Text.IndexOf(',') > -1
+
+            // При вводе меняет запятую на точку
+            if (l == ',')
+            {
+                l = '.';
+            }
+
+            // Ввод только цифр, только одной точки, BACKSPACE
+            if (!Char.IsDigit(l) &&  l != '.' && l != '\b' && ((TextBox)sender).Text.IndexOf('.') != -1)
             {
                 e.Handled = true;
             }
-            if (l == '.')                                                                                 // (не готово) Меняет точку на запятую
-            {
-                l = ',';
-            }
-            if (((TextBox)sender).SelectionStart == 0 & l == ',')                                        // Запятая не может быть первой (как это работает??) (БЛИН НЕ РАБОТАЕТ ВСЕ!!!!!!!!)
+
+            // Точка не может быть первой
+            if (((TextBox)sender).SelectionStart == 0 & l == '.')
             {
                 e.Handled = true;
-            } 
+            }
+
+            // Если первая - 0, то следующая только точка
+            if (((TextBox)sender).Text == "0")
+            {
+                if (l != '.' & l != '\b')
+                {
+                    e.Handled = true;
+                }
+            }
+
+            // Только 2 знака после точки
+            if (((TextBox)sender).Text.IndexOf('.') > 0)
+            {
+                if (((TextBox)sender).Text.Substring(((TextBox)sender).Text.IndexOf('.')).Length > 2)
+                {
+                    if (l != '\b')
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
         }
     }
 }

@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.addAgentButton = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.ktBox1 = new System.Windows.Forms.MaskedTextBox();
             this.fBox1 = new System.Windows.Forms.TextBox();
             this.oBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,6 +59,7 @@
             this.delButton2 = new System.Windows.Forms.Button();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tBox = new System.Windows.Forms.MaskedTextBox();
             this.vdComboBox = new System.Windows.Forms.ComboBox();
             this.aBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -67,6 +69,7 @@
             this.npBox = new System.Windows.Forms.TextBox();
             this.addRButton = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tBox1 = new System.Windows.Forms.MaskedTextBox();
             this.vdComboBox1 = new System.Windows.Forms.ComboBox();
             this.aBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -188,9 +191,6 @@
             this.vdBox1 = new System.Windows.Forms.TextBox();
             this.updVDButton = new System.Windows.Forms.Button();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
-            this.ktBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.tBox = new System.Windows.Forms.MaskedTextBox();
-            this.tBox1 = new System.Windows.Forms.MaskedTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -251,7 +251,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Агенты бюро";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // showButton1
             // 
@@ -301,7 +300,6 @@
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Добавление";
             this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // ktBox
             // 
@@ -404,6 +402,15 @@
             this.tabPage4.Text = "Изменение";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // ktBox1
+            // 
+            this.ktBox1.Location = new System.Drawing.Point(162, 200);
+            this.ktBox1.Mask = "9 (999) 000-0000";
+            this.ktBox1.Name = "ktBox1";
+            this.ktBox1.Size = new System.Drawing.Size(100, 20);
+            this.ktBox1.TabIndex = 17;
+            this.ktBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ktBox_MouseClick);
+            // 
             // fBox1
             // 
             this.fBox1.Location = new System.Drawing.Point(162, 63);
@@ -488,8 +495,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(749, 301);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // tabPage5
             // 
@@ -553,7 +558,15 @@
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "Добавление";
             this.tabPage6.UseVisualStyleBackColor = true;
-            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
+            // 
+            // tBox
+            // 
+            this.tBox.Location = new System.Drawing.Point(162, 197);
+            this.tBox.Mask = "9 (999) 000-0000";
+            this.tBox.Name = "tBox";
+            this.tBox.Size = new System.Drawing.Size(100, 20);
+            this.tBox.TabIndex = 18;
+            this.tBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ktBox_MouseClick);
             // 
             // vdComboBox
             // 
@@ -579,7 +592,6 @@
             this.label13.Size = new System.Drawing.Size(99, 13);
             this.label13.TabIndex = 5;
             this.label13.Text = "Вид деятельности";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // label12
             // 
@@ -598,7 +610,6 @@
             this.label11.Size = new System.Drawing.Size(125, 13);
             this.label11.TabIndex = 3;
             this.label11.Text = "Название предприятия";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label3
             // 
@@ -644,6 +655,15 @@
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "Изменение";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tBox1
+            // 
+            this.tBox1.Location = new System.Drawing.Point(162, 197);
+            this.tBox1.Mask = "9 (999) 000-0000";
+            this.tBox1.Name = "tBox1";
+            this.tBox1.Size = new System.Drawing.Size(100, 20);
+            this.tBox1.TabIndex = 18;
+            this.tBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ktBox_MouseClick);
             // 
             // vdComboBox1
             // 
@@ -946,7 +966,6 @@
             this.tuoBox1.Name = "tuoBox1";
             this.tuoBox1.Size = new System.Drawing.Size(161, 20);
             this.tuoBox1.TabIndex = 8;
-            this.tuoBox1.TextChanged += new System.EventHandler(this.textBox2_TextChanged_1);
             // 
             // kBox1
             // 
@@ -1104,7 +1123,6 @@
             this.przpBox.Name = "przpBox";
             this.przpBox.Size = new System.Drawing.Size(161, 20);
             this.przpBox.TabIndex = 31;
-            this.przpBox.TextChanged += new System.EventHandler(this.textBox31_TextChanged);
             this.przpBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label32
@@ -1131,7 +1149,6 @@
             this.label33.Size = new System.Drawing.Size(56, 13);
             this.label33.TabIndex = 28;
             this.label33.Text = "Фамилия";
-            this.label33.Click += new System.EventHandler(this.label33_Click);
             // 
             // fBox2
             // 
@@ -1164,7 +1181,6 @@
             this.obrBox.Name = "obrBox";
             this.obrBox.Size = new System.Drawing.Size(161, 20);
             this.obrBox.TabIndex = 23;
-            this.obrBox.TextChanged += new System.EventHandler(this.textBox36_TextChanged);
             // 
             // oBox2
             // 
@@ -1210,7 +1226,6 @@
             this.label38.Size = new System.Drawing.Size(78, 13);
             this.label38.TabIndex = 18;
             this.label38.Text = "Год рождения";
-            this.label38.Click += new System.EventHandler(this.label38_Click);
             // 
             // iBox2
             // 
@@ -1479,7 +1494,6 @@
             this.tabPage14.TabIndex = 0;
             this.tabPage14.Text = "Добавление";
             this.tabPage14.UseVisualStyleBackColor = true;
-            this.tabPage14.Click += new System.EventHandler(this.tabPage14_Click);
             // 
             // dateTimePicker3
             // 
@@ -1764,7 +1778,6 @@
             this.tabPage17.TabIndex = 0;
             this.tabPage17.Text = "Добавление";
             this.tabPage17.UseVisualStyleBackColor = true;
-            this.tabPage17.Click += new System.EventHandler(this.tabPage17_Click);
             // 
             // label49
             // 
@@ -1842,33 +1855,6 @@
             this.dataGridView6.Size = new System.Drawing.Size(749, 301);
             this.dataGridView6.TabIndex = 0;
             this.dataGridView6.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellClick);
-            // 
-            // ktBox1
-            // 
-            this.ktBox1.Location = new System.Drawing.Point(162, 200);
-            this.ktBox1.Mask = "9 (999) 000-0000";
-            this.ktBox1.Name = "ktBox1";
-            this.ktBox1.Size = new System.Drawing.Size(100, 20);
-            this.ktBox1.TabIndex = 17;
-            this.ktBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ktBox_MouseClick);
-            // 
-            // tBox
-            // 
-            this.tBox.Location = new System.Drawing.Point(162, 197);
-            this.tBox.Mask = "9 (999) 000-0000";
-            this.tBox.Name = "tBox";
-            this.tBox.Size = new System.Drawing.Size(100, 20);
-            this.tBox.TabIndex = 18;
-            this.tBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ktBox_MouseClick);
-            // 
-            // tBox1
-            // 
-            this.tBox1.Location = new System.Drawing.Point(162, 197);
-            this.tBox1.Mask = "9 (999) 000-0000";
-            this.tBox1.Name = "tBox1";
-            this.tBox1.Size = new System.Drawing.Size(100, 20);
-            this.tBox1.TabIndex = 18;
-            this.tBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ktBox_MouseClick);
             // 
             // ПросмотрТаблиц
             // 

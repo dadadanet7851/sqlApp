@@ -257,7 +257,7 @@
             this.showButton1.Location = new System.Drawing.Point(601, 342);
             this.showButton1.Name = "showButton1";
             this.showButton1.Size = new System.Drawing.Size(142, 39);
-            this.showButton1.TabIndex = 3;
+            this.showButton1.TabIndex = 7;
             this.showButton1.Text = "Обновить";
             this.showButton1.UseVisualStyleBackColor = true;
             this.showButton1.Click += new System.EventHandler(this.showButton1_Click);
@@ -267,7 +267,7 @@
             this.delButton1.Location = new System.Drawing.Point(396, 342);
             this.delButton1.Name = "delButton1";
             this.delButton1.Size = new System.Drawing.Size(142, 39);
-            this.delButton1.TabIndex = 2;
+            this.delButton1.TabIndex = 6;
             this.delButton1.Text = "Удалить строку";
             this.delButton1.UseVisualStyleBackColor = true;
             this.delButton1.Click += new System.EventHandler(this.delButton1_Click);
@@ -307,7 +307,7 @@
             this.ktBox.Mask = "9 (999) 000-0000";
             this.ktBox.Name = "ktBox";
             this.ktBox.Size = new System.Drawing.Size(100, 20);
-            this.ktBox.TabIndex = 16;
+            this.ktBox.TabIndex = 4;
             this.ktBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ktBox_MouseClick);
             // 
             // oBox
@@ -315,7 +315,7 @@
             this.oBox.Location = new System.Drawing.Point(162, 152);
             this.oBox.Name = "oBox";
             this.oBox.Size = new System.Drawing.Size(161, 20);
-            this.oBox.TabIndex = 15;
+            this.oBox.TabIndex = 3;
             this.oBox.TextChanged += new System.EventHandler(this.fio_TextChanged);
             this.oBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.fio_KeyPress);
             // 
@@ -324,7 +324,7 @@
             this.iBox.Location = new System.Drawing.Point(162, 106);
             this.iBox.Name = "iBox";
             this.iBox.Size = new System.Drawing.Size(161, 20);
-            this.iBox.TabIndex = 14;
+            this.iBox.TabIndex = 2;
             this.iBox.TextChanged += new System.EventHandler(this.fio_TextChanged);
             this.iBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.fio_KeyPress);
             // 
@@ -333,7 +333,7 @@
             this.fBox.Location = new System.Drawing.Point(162, 63);
             this.fBox.Name = "fBox";
             this.fBox.Size = new System.Drawing.Size(161, 20);
-            this.fBox.TabIndex = 13;
+            this.fBox.TabIndex = 1;
             this.fBox.TextChanged += new System.EventHandler(this.fio_TextChanged);
             this.fBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.fio_KeyPress);
             // 
@@ -378,7 +378,7 @@
             this.addAgentButton.Location = new System.Drawing.Point(119, 307);
             this.addAgentButton.Name = "addAgentButton";
             this.addAgentButton.Size = new System.Drawing.Size(105, 40);
-            this.addAgentButton.TabIndex = 0;
+            this.addAgentButton.TabIndex = 5;
             this.addAgentButton.Text = "Добавить";
             this.addAgentButton.UseVisualStyleBackColor = true;
             this.addAgentButton.Click += new System.EventHandler(this.addAgentButton_Click);
@@ -570,6 +570,7 @@
             // 
             // vdComboBox
             // 
+            this.vdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.vdComboBox.FormattingEnabled = true;
             this.vdComboBox.Location = new System.Drawing.Point(162, 103);
             this.vdComboBox.Name = "vdComboBox";
@@ -583,6 +584,7 @@
             this.aBox.Name = "aBox";
             this.aBox.Size = new System.Drawing.Size(161, 20);
             this.aBox.TabIndex = 8;
+            this.aBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // label13
             // 
@@ -626,6 +628,7 @@
             this.npBox.Name = "npBox";
             this.npBox.Size = new System.Drawing.Size(161, 20);
             this.npBox.TabIndex = 1;
+            this.npBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // addRButton
             // 
@@ -667,6 +670,7 @@
             // 
             // vdComboBox1
             // 
+            this.vdComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.vdComboBox1.FormattingEnabled = true;
             this.vdComboBox1.Location = new System.Drawing.Point(162, 103);
             this.vdComboBox1.Name = "vdComboBox1";
@@ -680,6 +684,7 @@
             this.aBox1.Name = "aBox1";
             this.aBox1.Size = new System.Drawing.Size(161, 20);
             this.aBox1.TabIndex = 8;
+            this.aBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // label4
             // 
@@ -723,6 +728,7 @@
             this.npBox1.Name = "npBox1";
             this.npBox1.Size = new System.Drawing.Size(161, 20);
             this.npBox1.TabIndex = 1;
+            this.npBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // updRButton
             // 
@@ -822,6 +828,7 @@
             // 
             // npComboBox
             // 
+            this.npComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.npComboBox.FormattingEnabled = true;
             this.npComboBox.Location = new System.Drawing.Point(162, 32);
             this.npComboBox.Name = "npComboBox";
@@ -844,6 +851,7 @@
             this.zpBox.Name = "zpBox";
             this.zpBox.Size = new System.Drawing.Size(161, 20);
             this.zpBox.TabIndex = 9;
+            this.zpBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.zpBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // tuoBox
@@ -936,6 +944,7 @@
             // 
             // npComboBox1
             // 
+            this.npComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.npComboBox1.FormattingEnabled = true;
             this.npComboBox1.Location = new System.Drawing.Point(162, 32);
             this.npComboBox1.Name = "npComboBox1";
@@ -958,6 +967,7 @@
             this.zpBox1.Name = "zpBox1";
             this.zpBox1.Size = new System.Drawing.Size(161, 20);
             this.zpBox1.TabIndex = 9;
+            this.zpBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.zpBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // tuoBox1
@@ -1123,6 +1133,7 @@
             this.przpBox.Name = "przpBox";
             this.przpBox.Size = new System.Drawing.Size(161, 20);
             this.przpBox.TabIndex = 31;
+            this.przpBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.przpBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label32
@@ -1295,6 +1306,7 @@
             this.przpBox1.Name = "przpBox1";
             this.przpBox1.Size = new System.Drawing.Size(161, 20);
             this.przpBox1.TabIndex = 31;
+            this.przpBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.przpBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label8
@@ -1531,6 +1543,7 @@
             // 
             // VComboBox
             // 
+            this.VComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VComboBox.FormattingEnabled = true;
             this.VComboBox.Location = new System.Drawing.Point(162, 143);
             this.VComboBox.Name = "VComboBox";
@@ -1540,6 +1553,7 @@
             // 
             // AComboBox
             // 
+            this.AComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AComboBox.FormattingEnabled = true;
             this.AComboBox.Location = new System.Drawing.Point(162, 186);
             this.AComboBox.Name = "AComboBox";
@@ -1549,6 +1563,7 @@
             // 
             // SComboBox
             // 
+            this.SComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SComboBox.FormattingEnabled = true;
             this.SComboBox.Location = new System.Drawing.Point(162, 102);
             this.SComboBox.Name = "SComboBox";
@@ -1571,6 +1586,7 @@
             this.kmsBox.Name = "kmsBox";
             this.kmsBox.Size = new System.Drawing.Size(161, 20);
             this.kmsBox.TabIndex = 3;
+            this.kmsBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.kmsBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label9
@@ -1649,6 +1665,7 @@
             // 
             // VComboBox1
             // 
+            this.VComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VComboBox1.FormattingEnabled = true;
             this.VComboBox1.Location = new System.Drawing.Point(162, 143);
             this.VComboBox1.Name = "VComboBox1";
@@ -1658,6 +1675,7 @@
             // 
             // AComboBox1
             // 
+            this.AComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AComboBox1.FormattingEnabled = true;
             this.AComboBox1.Location = new System.Drawing.Point(162, 186);
             this.AComboBox1.Name = "AComboBox1";
@@ -1667,6 +1685,7 @@
             // 
             // SComboBox1
             // 
+            this.SComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SComboBox1.FormattingEnabled = true;
             this.SComboBox1.Location = new System.Drawing.Point(162, 102);
             this.SComboBox1.Name = "SComboBox1";
@@ -1689,6 +1708,7 @@
             this.kmsBox1.Name = "kmsBox1";
             this.kmsBox1.Size = new System.Drawing.Size(161, 20);
             this.kmsBox1.TabIndex = 3;
+            this.kmsBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.kmsBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label58
@@ -1794,6 +1814,7 @@
             this.vdBox.Name = "vdBox";
             this.vdBox.Size = new System.Drawing.Size(161, 20);
             this.vdBox.TabIndex = 1;
+            this.vdBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // addVDButton
             // 
@@ -1833,6 +1854,7 @@
             this.vdBox1.Name = "vdBox1";
             this.vdBox1.Size = new System.Drawing.Size(161, 20);
             this.vdBox1.TabIndex = 1;
+            this.vdBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // updVDButton
             // 

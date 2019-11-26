@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -11,8 +12,11 @@ namespace SqlServerTestApp
 {
     public partial class ПросмотрТаблиц : Form
     {
-        public char PromptChar { get; set; }
-        
+        public char PromptChar { get; set; } // Это используется??
+
+        [DllImport("user32.dll")]                  // Каретка
+
+        static extern bool HideCaret(IntPtr hWnd); // Каретка
 
         public ПросмотрТаблиц()
         {
@@ -202,10 +206,10 @@ namespace SqlServerTestApp
             przpBox1.Text = dataGridView4.CurrentRow.Cells[8].Value.ToString();
         }
 
-        private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)                                   // ЭТО НЕ РАБОТАЕТ
         {
-            var items = DBConnectionService.SendQueryToSqlServer($"select [id соискателя], (Фамилия+' '+Имя+' '+Отчество) from Соискатели " +       // Это не работает
-                $"where [id соискателя] = {dataGridView5.CurrentRow.Cells[1].Value}")?.Select(s => new IdentityItem(s[0], s[1]));
+            var items = DBConnectionService.SendQueryToSqlServer($"select [id соискателя], (Фамилия+' '+Имя+' '+Отчество) from Соискатели " +
+                $"where [id соискателя] = {dataGridView5.CurrentRow.Cells[1].Value}")?.Select(row => new IdentityItem(row[0], row[1]));
             SComboBox1.SelectedItem = items.FirstOrDefault();
             VComboBox1.Text = dataGridView5.CurrentRow.Cells[2].Value.ToString();
             AComboBox1.Text = dataGridView5.CurrentRow.Cells[3].Value.ToString();
@@ -688,6 +692,7 @@ namespace SqlServerTestApp
 
         private void fio_TextChanged(object sender, EventArgs e)                                                      // Ввод с заглавной
         {
+            HideCaret(((TextBox)sender).Handle);
             if (((TextBox)sender).Text.Length == 1)
                 ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
             ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
@@ -708,32 +713,31 @@ namespace SqlServerTestApp
             ((MaskedTextBox)sender).SelectionLength = 0;
         }
 
-        private void zpBox_KeyPress(object sender, KeyPressEventArgs e)                                               // Ввод суммы денег (не готово, еще можно добавить "руб.")
+        private void zpBox_KeyPress(object sender, KeyPressEventArgs e)                                               // Ввод суммы денег
         {
-            char l = e.KeyChar;
-
-            // При вводе меняет запятую на точку
-            if (l == ',')
+            // Менять запятую на точку
+            if (e.KeyChar == ',')
             {
-                l = '.';
+                e.KeyChar = '.';
             }
 
-            // Ввод только цифр, только одной точки, BACKSPACE
-            if (!Char.IsDigit(l) &&  l != '.' && l != '\b' && ((TextBox)sender).Text.IndexOf('.') != -1)
+            // Только цифры, точка, BACKSPACE
+            if (e.KeyChar < '0' | e.KeyChar > '9' && e.KeyChar != (char)Keys.Back && e.KeyChar != '.')
+            {
+
+                e.Handled = true;
+            }
+
+            // Точка не первая
+            if (((TextBox)sender).SelectionStart == 0 & e.KeyChar == '.')
             {
                 e.Handled = true;
             }
 
-            // Точка не может быть первой
-            if (((TextBox)sender).SelectionStart == 0 & l == '.')
-            {
-                e.Handled = true;
-            }
-
-            // Если первая - 0, то следующая только точка
+            // Если первая - 0, то вторая только точка 
             if (((TextBox)sender).Text == "0")
             {
-                if (l != '.' & l != '\b')
+                if (e.KeyChar != '.' & e.KeyChar != (char)Keys.Back)
                 {
                     e.Handled = true;
                 }
@@ -744,12 +748,26 @@ namespace SqlServerTestApp
             {
                 if (((TextBox)sender).Text.Substring(((TextBox)sender).Text.IndexOf('.')).Length > 2)
                 {
-                    if (l != '\b')
+                    if (e.KeyChar != (char)Keys.Back)
                     {
                         e.Handled = true;
                     }
                 }
             }
+
+            // Только 1 точка
+            if (e.KeyChar == '.')
+            {
+                if (((TextBox)sender).Text.IndexOf('.') != -1)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        public void Other_TextChanged(object sender, EventArgs e)                                         // Скрыть каретку при вводе на полях, где нет своего TextChanged (кроме MaskedBox)
+        {
+            HideCaret(((TextBox)sender).Handle);
         }
     }
 }

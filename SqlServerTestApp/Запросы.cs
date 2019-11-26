@@ -23,7 +23,7 @@ namespace SqlServerTestApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM Соискатели WHERE datediff(yy, [Год рождения], getdate()) between 18 and 43";
+            string query = "SELECT * FROM Соискатели WHERE datediff(yy, [Год рождения], getdate()) between 18 and 43";                           // http://xandeadx.ru/blog/mysql/515
             var list = DBConnectionService.SendQueryToSqlServer(query);
             if (list == null || !list.Any())
             {

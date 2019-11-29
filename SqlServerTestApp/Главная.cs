@@ -26,11 +26,6 @@ namespace SqlServerTestApp
             this.OpenNewForm<ПросмотрТаблиц>();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.OpenNewForm<ТестДроп>();
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             this.OpenNewForm<Запросы>();

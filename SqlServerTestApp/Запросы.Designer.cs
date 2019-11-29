@@ -35,6 +35,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,6 +44,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(396, 12);
             this.dataGridView1.Name = "dataGridView1";
@@ -106,11 +109,32 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Количество вакансий фирмы \"Рога и копыта\"";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 218);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(207, 26);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Количество открытых вакансий\r\nна должность \"Инженер-программист\"";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(288, 213);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Показать";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Запросы
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1290, 450);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -136,5 +160,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button4;
     }
 }

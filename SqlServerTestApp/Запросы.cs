@@ -23,7 +23,7 @@ namespace SqlServerTestApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM Соискатели WHERE datediff(yy, [Год рождения], getdate()) between 18 and 43";                           // http://xandeadx.ru/blog/mysql/515
+            string query = "SELECT * FROM (SELECT *, DATEDIFF(MONTH, [Год рождения], GETDATE())/12 as Возраст FROM Соискатели )MyTab WHERE Возраст BETWEEN 18 AND 43 ORDER BY Возраст ASC";
             var list = DBConnectionService.SendQueryToSqlServer(query);
             if (list == null || !list.Any())
             {
@@ -40,9 +40,10 @@ namespace SqlServerTestApp
             dataGridView1.Columns.Add("Должность", "Должность");
             dataGridView1.Columns.Add("Квалификация", "Квалификация");
             dataGridView1.Columns.Add("Предполагаемый размер заработной платы", "Предполагаемый размер заработной платы");
+            dataGridView1.Columns.Add("Возраст", "Возраст");
             foreach (var row in list)
             {
-                dataGridView1.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]);
+                dataGridView1.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]);
             }
             dataGridView1.Refresh();
         }
@@ -80,7 +81,25 @@ namespace SqlServerTestApp
             }
             dataGridView1.Rows.Clear();
             dataGridView1.Columns.Clear();
-            dataGridView1.Columns.Add("Кол-во вакансий", "Кол-во вакансий");
+            dataGridView1.Columns.Add("Кол-во вакансий у фирмы \"Рога и копыта\"", "Кол-во вакансий у фирмы \"Рога и копыта\"");
+            foreach (var row in list)
+            {
+                dataGridView1.Rows.Add(row[0]);
+            }
+            dataGridView1.Refresh();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT COUNT (*) FROM Вакансии WHERE ([id должности] = 1) AND (Открытая = 1)";
+            var list = DBConnectionService.SendQueryToSqlServer(query);
+            if (list == null || !list.Any())
+            {
+                return;
+            }
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("Кол-во открытых вакансий на должность \"Инженер-программист\"", "Кол-во открытых вакансий на должность \"Инженер-программист\"");
             foreach (var row in list)
             {
                 dataGridView1.Rows.Add(row[0]);

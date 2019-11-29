@@ -18,8 +18,8 @@ namespace SqlServerTestApp
             InitializeComponent();
             serverBox.Text = "localhost\\sqlexpress";
             dbNameBox.Text = "БТ";
-            usernameBox.Text = "123";
-            userpassBox.Text = "123";
+            usernameBox.Text = null;
+            userpassBox.Text = null;
         }
 
         private void connectButton_Click(object sender, EventArgs e)

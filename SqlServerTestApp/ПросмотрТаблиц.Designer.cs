@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.showButton1 = new System.Windows.Forms.Button();
@@ -90,7 +92,6 @@
             this.zpBox = new System.Windows.Forms.TextBox();
             this.tuoBox = new System.Windows.Forms.TextBox();
             this.kBox = new System.Windows.Forms.TextBox();
-            this.dBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -102,7 +103,6 @@
             this.zpBox1 = new System.Windows.Forms.TextBox();
             this.tuoBox1 = new System.Windows.Forms.TextBox();
             this.kBox1 = new System.Windows.Forms.TextBox();
-            this.dBox1 = new System.Windows.Forms.TextBox();
             this.label52 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
@@ -121,7 +121,6 @@
             this.label33 = new System.Windows.Forms.Label();
             this.fBox2 = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
-            this.dBox2 = new System.Windows.Forms.TextBox();
             this.obrBox = new System.Windows.Forms.TextBox();
             this.oBox2 = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
@@ -139,7 +138,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.fBox3 = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.dBox3 = new System.Windows.Forms.TextBox();
             this.obrBox1 = new System.Windows.Forms.TextBox();
             this.oBox3 = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -191,6 +189,29 @@
             this.vdBox1 = new System.Windows.Forms.TextBox();
             this.updVDButton = new System.Windows.Forms.Button();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.showButton7 = new System.Windows.Forms.Button();
+            this.delButton7 = new System.Windows.Forms.Button();
+            this.tabControl8 = new System.Windows.Forms.TabControl();
+            this.tabPage20 = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.originalDBox1 = new System.Windows.Forms.TextBox();
+            this.addDButton = new System.Windows.Forms.Button();
+            this.tabPage21 = new System.Windows.Forms.TabPage();
+            this.label40 = new System.Windows.Forms.Label();
+            this.originalDBox2 = new System.Windows.Forms.TextBox();
+            this.updDButton = new System.Windows.Forms.Button();
+            this.dataGridView7 = new System.Windows.Forms.DataGridView();
+            this.dBox = new System.Windows.Forms.ComboBox();
+            this.dBox1 = new System.Windows.Forms.ComboBox();
+            this.dBox2 = new System.Windows.Forms.ComboBox();
+            this.dBox3 = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -222,6 +243,13 @@
             this.tabPage17.SuspendLayout();
             this.tabPage18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
+            this.tabPage12.SuspendLayout();
+            this.tabControl8.SuspendLayout();
+            this.tabPage20.SuspendLayout();
+            this.tabPage21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -232,11 +260,13 @@
             this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Controls.Add(this.tabPage13);
             this.tabControl1.Controls.Add(this.tabPage15);
+            this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1136, 578);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -304,8 +334,9 @@
             // ktBox
             // 
             this.ktBox.Location = new System.Drawing.Point(162, 200);
-            this.ktBox.Mask = "9 (999) 000-0000";
+            this.ktBox.Mask = "0 (000) 000-0000";
             this.ktBox.Name = "ktBox";
+            this.ktBox.ResetOnSpace = false;
             this.ktBox.Size = new System.Drawing.Size(100, 20);
             this.ktBox.TabIndex = 4;
             this.ktBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ktBox_MouseClick);
@@ -488,6 +519,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(373, 28);
             this.dataGridView1.Name = "dataGridView1";
@@ -570,13 +602,13 @@
             // 
             // vdComboBox
             // 
-            this.vdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.vdComboBox.FormattingEnabled = true;
             this.vdComboBox.Location = new System.Drawing.Point(162, 103);
             this.vdComboBox.Name = "vdComboBox";
             this.vdComboBox.Size = new System.Drawing.Size(161, 21);
             this.vdComboBox.TabIndex = 9;
             this.vdComboBox.DropDown += new System.EventHandler(this.vdComboBox_DropDown);
+            this.vdComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // aBox
             // 
@@ -584,7 +616,6 @@
             this.aBox.Name = "aBox";
             this.aBox.Size = new System.Drawing.Size(161, 20);
             this.aBox.TabIndex = 8;
-            this.aBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // label13
             // 
@@ -628,7 +659,6 @@
             this.npBox.Name = "npBox";
             this.npBox.Size = new System.Drawing.Size(161, 20);
             this.npBox.TabIndex = 1;
-            this.npBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // addRButton
             // 
@@ -670,13 +700,13 @@
             // 
             // vdComboBox1
             // 
-            this.vdComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.vdComboBox1.FormattingEnabled = true;
             this.vdComboBox1.Location = new System.Drawing.Point(162, 103);
             this.vdComboBox1.Name = "vdComboBox1";
             this.vdComboBox1.Size = new System.Drawing.Size(161, 21);
             this.vdComboBox1.TabIndex = 10;
             this.vdComboBox1.DropDown += new System.EventHandler(this.vdComboBox_DropDown);
+            this.vdComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // aBox1
             // 
@@ -684,7 +714,6 @@
             this.aBox1.Name = "aBox1";
             this.aBox1.Size = new System.Drawing.Size(161, 20);
             this.aBox1.TabIndex = 8;
-            this.aBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // label4
             // 
@@ -728,7 +757,6 @@
             this.npBox1.Name = "npBox1";
             this.npBox1.Size = new System.Drawing.Size(161, 20);
             this.npBox1.TabIndex = 1;
-            this.npBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // updRButton
             // 
@@ -744,6 +772,7 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(373, 28);
             this.dataGridView2.Name = "dataGridView2";
@@ -798,13 +827,14 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.groupBox1);
+            this.tabPage8.Controls.Add(this.dBox);
             this.tabPage8.Controls.Add(this.label48);
             this.tabPage8.Controls.Add(this.npComboBox);
             this.tabPage8.Controls.Add(this.label19);
             this.tabPage8.Controls.Add(this.zpBox);
             this.tabPage8.Controls.Add(this.tuoBox);
             this.tabPage8.Controls.Add(this.kBox);
-            this.tabPage8.Controls.Add(this.dBox);
             this.tabPage8.Controls.Add(this.label5);
             this.tabPage8.Controls.Add(this.label6);
             this.tabPage8.Controls.Add(this.label18);
@@ -828,13 +858,13 @@
             // 
             // npComboBox
             // 
-            this.npComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.npComboBox.FormattingEnabled = true;
             this.npComboBox.Location = new System.Drawing.Point(162, 32);
             this.npComboBox.Name = "npComboBox";
             this.npComboBox.Size = new System.Drawing.Size(161, 21);
             this.npComboBox.TabIndex = 11;
             this.npComboBox.DropDown += new System.EventHandler(this.npComboBox_DropDown);
+            this.npComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // label19
             // 
@@ -851,29 +881,25 @@
             this.zpBox.Name = "zpBox";
             this.zpBox.Size = new System.Drawing.Size(161, 20);
             this.zpBox.TabIndex = 9;
-            this.zpBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.zpBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // tuoBox
             // 
             this.tuoBox.Location = new System.Drawing.Point(162, 127);
+            this.tuoBox.Multiline = true;
             this.tuoBox.Name = "tuoBox";
-            this.tuoBox.Size = new System.Drawing.Size(161, 20);
+            this.tuoBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tuoBox.Size = new System.Drawing.Size(161, 40);
             this.tuoBox.TabIndex = 8;
             // 
             // kBox
             // 
             this.kBox.Location = new System.Drawing.Point(162, 173);
+            this.kBox.Multiline = true;
             this.kBox.Name = "kBox";
-            this.kBox.Size = new System.Drawing.Size(161, 20);
+            this.kBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.kBox.Size = new System.Drawing.Size(161, 39);
             this.kBox.TabIndex = 7;
-            // 
-            // dBox
-            // 
-            this.dBox.Location = new System.Drawing.Point(162, 79);
-            this.dBox.Name = "dBox";
-            this.dBox.Size = new System.Drawing.Size(161, 20);
-            this.dBox.TabIndex = 6;
             // 
             // label5
             // 
@@ -914,13 +940,14 @@
             // 
             // tabPage19
             // 
+            this.tabPage19.Controls.Add(this.groupBox2);
+            this.tabPage19.Controls.Add(this.dBox1);
             this.tabPage19.Controls.Add(this.label50);
             this.tabPage19.Controls.Add(this.npComboBox1);
             this.tabPage19.Controls.Add(this.label51);
             this.tabPage19.Controls.Add(this.zpBox1);
             this.tabPage19.Controls.Add(this.tuoBox1);
             this.tabPage19.Controls.Add(this.kBox1);
-            this.tabPage19.Controls.Add(this.dBox1);
             this.tabPage19.Controls.Add(this.label52);
             this.tabPage19.Controls.Add(this.label53);
             this.tabPage19.Controls.Add(this.label55);
@@ -944,13 +971,13 @@
             // 
             // npComboBox1
             // 
-            this.npComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.npComboBox1.FormattingEnabled = true;
             this.npComboBox1.Location = new System.Drawing.Point(162, 32);
             this.npComboBox1.Name = "npComboBox1";
             this.npComboBox1.Size = new System.Drawing.Size(161, 21);
             this.npComboBox1.TabIndex = 11;
             this.npComboBox1.DropDown += new System.EventHandler(this.npComboBox_DropDown);
+            this.npComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // label51
             // 
@@ -967,29 +994,25 @@
             this.zpBox1.Name = "zpBox1";
             this.zpBox1.Size = new System.Drawing.Size(161, 20);
             this.zpBox1.TabIndex = 9;
-            this.zpBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.zpBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // tuoBox1
             // 
             this.tuoBox1.Location = new System.Drawing.Point(162, 127);
+            this.tuoBox1.Multiline = true;
             this.tuoBox1.Name = "tuoBox1";
-            this.tuoBox1.Size = new System.Drawing.Size(161, 20);
+            this.tuoBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tuoBox1.Size = new System.Drawing.Size(161, 40);
             this.tuoBox1.TabIndex = 8;
             // 
             // kBox1
             // 
             this.kBox1.Location = new System.Drawing.Point(162, 173);
+            this.kBox1.Multiline = true;
             this.kBox1.Name = "kBox1";
-            this.kBox1.Size = new System.Drawing.Size(161, 20);
+            this.kBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.kBox1.Size = new System.Drawing.Size(161, 39);
             this.kBox1.TabIndex = 7;
-            // 
-            // dBox1
-            // 
-            this.dBox1.Location = new System.Drawing.Point(162, 79);
-            this.dBox1.Name = "dBox1";
-            this.dBox1.Size = new System.Drawing.Size(161, 20);
-            this.dBox1.TabIndex = 6;
             // 
             // label52
             // 
@@ -1032,7 +1055,17 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView3.Location = new System.Drawing.Point(373, 28);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
@@ -1086,6 +1119,7 @@
             // 
             // tabPage16
             // 
+            this.tabPage16.Controls.Add(this.dBox2);
             this.tabPage16.Controls.Add(this.dateTimePicker1);
             this.tabPage16.Controls.Add(this.label31);
             this.tabPage16.Controls.Add(this.przpBox);
@@ -1094,7 +1128,6 @@
             this.tabPage16.Controls.Add(this.label33);
             this.tabPage16.Controls.Add(this.fBox2);
             this.tabPage16.Controls.Add(this.label34);
-            this.tabPage16.Controls.Add(this.dBox2);
             this.tabPage16.Controls.Add(this.obrBox);
             this.tabPage16.Controls.Add(this.oBox2);
             this.tabPage16.Controls.Add(this.label35);
@@ -1133,7 +1166,6 @@
             this.przpBox.Name = "przpBox";
             this.przpBox.Size = new System.Drawing.Size(161, 20);
             this.przpBox.TabIndex = 31;
-            this.przpBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.przpBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label32
@@ -1148,8 +1180,10 @@
             // kBox2
             // 
             this.kBox2.Location = new System.Drawing.Point(164, 301);
+            this.kBox2.Multiline = true;
             this.kBox2.Name = "kBox2";
-            this.kBox2.Size = new System.Drawing.Size(161, 20);
+            this.kBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.kBox2.Size = new System.Drawing.Size(161, 39);
             this.kBox2.TabIndex = 29;
             // 
             // label33
@@ -1179,18 +1213,13 @@
             this.label34.TabIndex = 26;
             this.label34.Text = "Должность";
             // 
-            // dBox2
-            // 
-            this.dBox2.Location = new System.Drawing.Point(164, 257);
-            this.dBox2.Name = "dBox2";
-            this.dBox2.Size = new System.Drawing.Size(161, 20);
-            this.dBox2.TabIndex = 25;
-            // 
             // obrBox
             // 
             this.obrBox.Location = new System.Drawing.Point(164, 211);
+            this.obrBox.Multiline = true;
             this.obrBox.Name = "obrBox";
-            this.obrBox.Size = new System.Drawing.Size(161, 20);
+            this.obrBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.obrBox.Size = new System.Drawing.Size(161, 40);
             this.obrBox.TabIndex = 23;
             // 
             // oBox2
@@ -1259,6 +1288,7 @@
             // 
             // tabPage11
             // 
+            this.tabPage11.Controls.Add(this.dBox3);
             this.tabPage11.Controls.Add(this.dateTimePicker2);
             this.tabPage11.Controls.Add(this.label7);
             this.tabPage11.Controls.Add(this.przpBox1);
@@ -1267,7 +1297,6 @@
             this.tabPage11.Controls.Add(this.label25);
             this.tabPage11.Controls.Add(this.fBox3);
             this.tabPage11.Controls.Add(this.label26);
-            this.tabPage11.Controls.Add(this.dBox3);
             this.tabPage11.Controls.Add(this.obrBox1);
             this.tabPage11.Controls.Add(this.oBox3);
             this.tabPage11.Controls.Add(this.label27);
@@ -1306,7 +1335,6 @@
             this.przpBox1.Name = "przpBox1";
             this.przpBox1.Size = new System.Drawing.Size(161, 20);
             this.przpBox1.TabIndex = 31;
-            this.przpBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.przpBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label8
@@ -1321,8 +1349,10 @@
             // kBox3
             // 
             this.kBox3.Location = new System.Drawing.Point(164, 301);
+            this.kBox3.Multiline = true;
             this.kBox3.Name = "kBox3";
-            this.kBox3.Size = new System.Drawing.Size(161, 20);
+            this.kBox3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.kBox3.Size = new System.Drawing.Size(161, 39);
             this.kBox3.TabIndex = 29;
             // 
             // label25
@@ -1352,18 +1382,13 @@
             this.label26.TabIndex = 26;
             this.label26.Text = "Должность";
             // 
-            // dBox3
-            // 
-            this.dBox3.Location = new System.Drawing.Point(164, 257);
-            this.dBox3.Name = "dBox3";
-            this.dBox3.Size = new System.Drawing.Size(161, 20);
-            this.dBox3.TabIndex = 25;
-            // 
             // obrBox1
             // 
             this.obrBox1.Location = new System.Drawing.Point(164, 211);
+            this.obrBox1.Multiline = true;
             this.obrBox1.Name = "obrBox1";
-            this.obrBox1.Size = new System.Drawing.Size(161, 20);
+            this.obrBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.obrBox1.Size = new System.Drawing.Size(161, 40);
             this.obrBox1.TabIndex = 23;
             // 
             // oBox3
@@ -1434,7 +1459,17 @@
             // 
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView4.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView4.Location = new System.Drawing.Point(373, 28);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
@@ -1543,33 +1578,33 @@
             // 
             // VComboBox
             // 
-            this.VComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VComboBox.FormattingEnabled = true;
             this.VComboBox.Location = new System.Drawing.Point(162, 143);
             this.VComboBox.Name = "VComboBox";
             this.VComboBox.Size = new System.Drawing.Size(161, 21);
             this.VComboBox.TabIndex = 7;
             this.VComboBox.DropDown += new System.EventHandler(this.VComboBox_DropDown);
+            this.VComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // AComboBox
             // 
-            this.AComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AComboBox.FormattingEnabled = true;
             this.AComboBox.Location = new System.Drawing.Point(162, 186);
             this.AComboBox.Name = "AComboBox";
             this.AComboBox.Size = new System.Drawing.Size(161, 21);
             this.AComboBox.TabIndex = 6;
             this.AComboBox.DropDown += new System.EventHandler(this.AComboBox_DropDown);
+            this.AComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // SComboBox
             // 
-            this.SComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SComboBox.FormattingEnabled = true;
             this.SComboBox.Location = new System.Drawing.Point(162, 102);
             this.SComboBox.Name = "SComboBox";
             this.SComboBox.Size = new System.Drawing.Size(161, 21);
             this.SComboBox.TabIndex = 5;
             this.SComboBox.DropDown += new System.EventHandler(this.SComboBox_DropDown);
+            this.SComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // label39
             // 
@@ -1586,7 +1621,6 @@
             this.kmsBox.Name = "kmsBox";
             this.kmsBox.Size = new System.Drawing.Size(161, 20);
             this.kmsBox.TabIndex = 3;
-            this.kmsBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.kmsBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label9
@@ -1665,33 +1699,33 @@
             // 
             // VComboBox1
             // 
-            this.VComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VComboBox1.FormattingEnabled = true;
             this.VComboBox1.Location = new System.Drawing.Point(162, 143);
             this.VComboBox1.Name = "VComboBox1";
             this.VComboBox1.Size = new System.Drawing.Size(161, 21);
             this.VComboBox1.TabIndex = 7;
             this.VComboBox1.DropDown += new System.EventHandler(this.VComboBox_DropDown);
+            this.VComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // AComboBox1
             // 
-            this.AComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AComboBox1.FormattingEnabled = true;
             this.AComboBox1.Location = new System.Drawing.Point(162, 186);
             this.AComboBox1.Name = "AComboBox1";
             this.AComboBox1.Size = new System.Drawing.Size(161, 21);
             this.AComboBox1.TabIndex = 6;
             this.AComboBox1.DropDown += new System.EventHandler(this.AComboBox_DropDown);
+            this.AComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // SComboBox1
             // 
-            this.SComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SComboBox1.FormattingEnabled = true;
             this.SComboBox1.Location = new System.Drawing.Point(162, 102);
             this.SComboBox1.Name = "SComboBox1";
             this.SComboBox1.Size = new System.Drawing.Size(161, 21);
             this.SComboBox1.TabIndex = 5;
             this.SComboBox1.DropDown += new System.EventHandler(this.SComboBox_DropDown);
+            this.SComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
             // 
             // label57
             // 
@@ -1708,7 +1742,6 @@
             this.kmsBox1.Name = "kmsBox1";
             this.kmsBox1.Size = new System.Drawing.Size(161, 20);
             this.kmsBox1.TabIndex = 3;
-            this.kmsBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             this.kmsBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.zpBox_KeyPress);
             // 
             // label58
@@ -1726,7 +1759,7 @@
             this.updSdButton.Name = "updSdButton";
             this.updSdButton.Size = new System.Drawing.Size(105, 40);
             this.updSdButton.TabIndex = 0;
-            this.updSdButton.Text = "Добавить";
+            this.updSdButton.Text = "Изменить";
             this.updSdButton.UseVisualStyleBackColor = true;
             this.updSdButton.Click += new System.EventHandler(this.updSdButton_Click);
             // 
@@ -1734,6 +1767,7 @@
             // 
             this.dataGridView5.AllowUserToAddRows = false;
             this.dataGridView5.AllowUserToDeleteRows = false;
+            this.dataGridView5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Location = new System.Drawing.Point(373, 28);
             this.dataGridView5.Name = "dataGridView5";
@@ -1814,7 +1848,6 @@
             this.vdBox.Name = "vdBox";
             this.vdBox.Size = new System.Drawing.Size(161, 20);
             this.vdBox.TabIndex = 1;
-            this.vdBox.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // addVDButton
             // 
@@ -1854,7 +1887,6 @@
             this.vdBox1.Name = "vdBox1";
             this.vdBox1.Size = new System.Drawing.Size(161, 20);
             this.vdBox1.TabIndex = 1;
-            this.vdBox1.TextChanged += new System.EventHandler(this.Other_TextChanged);
             // 
             // updVDButton
             // 
@@ -1870,6 +1902,7 @@
             // 
             this.dataGridView6.AllowUserToAddRows = false;
             this.dataGridView6.AllowUserToDeleteRows = false;
+            this.dataGridView6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Location = new System.Drawing.Point(373, 28);
             this.dataGridView6.Name = "dataGridView6";
@@ -1878,15 +1911,261 @@
             this.dataGridView6.TabIndex = 0;
             this.dataGridView6.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellClick);
             // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.showButton7);
+            this.tabPage12.Controls.Add(this.delButton7);
+            this.tabPage12.Controls.Add(this.tabControl8);
+            this.tabPage12.Controls.Add(this.dataGridView7);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage12.Size = new System.Drawing.Size(1128, 552);
+            this.tabPage12.TabIndex = 7;
+            this.tabPage12.Text = "Должности";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // showButton7
+            // 
+            this.showButton7.Location = new System.Drawing.Point(601, 342);
+            this.showButton7.Name = "showButton7";
+            this.showButton7.Size = new System.Drawing.Size(142, 39);
+            this.showButton7.TabIndex = 3;
+            this.showButton7.Text = "Обновить";
+            this.showButton7.UseVisualStyleBackColor = true;
+            this.showButton7.Click += new System.EventHandler(this.showButton7_Click);
+            // 
+            // delButton7
+            // 
+            this.delButton7.Location = new System.Drawing.Point(396, 342);
+            this.delButton7.Name = "delButton7";
+            this.delButton7.Size = new System.Drawing.Size(142, 39);
+            this.delButton7.TabIndex = 2;
+            this.delButton7.Text = "Удалить строку";
+            this.delButton7.UseVisualStyleBackColor = true;
+            this.delButton7.Click += new System.EventHandler(this.delButton7_Click);
+            // 
+            // tabControl8
+            // 
+            this.tabControl8.Controls.Add(this.tabPage20);
+            this.tabControl8.Controls.Add(this.tabPage21);
+            this.tabControl8.Location = new System.Drawing.Point(6, 6);
+            this.tabControl8.Name = "tabControl8";
+            this.tabControl8.SelectedIndex = 0;
+            this.tabControl8.Size = new System.Drawing.Size(361, 379);
+            this.tabControl8.TabIndex = 1;
+            // 
+            // tabPage20
+            // 
+            this.tabPage20.Controls.Add(this.label17);
+            this.tabPage20.Controls.Add(this.originalDBox1);
+            this.tabPage20.Controls.Add(this.addDButton);
+            this.tabPage20.Location = new System.Drawing.Point(4, 22);
+            this.tabPage20.Name = "tabPage20";
+            this.tabPage20.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage20.Size = new System.Drawing.Size(353, 353);
+            this.tabPage20.TabIndex = 0;
+            this.tabPage20.Text = "Добавление";
+            this.tabPage20.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(27, 60);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Должность";
+            // 
+            // originalDBox1
+            // 
+            this.originalDBox1.Location = new System.Drawing.Point(162, 57);
+            this.originalDBox1.Name = "originalDBox1";
+            this.originalDBox1.Size = new System.Drawing.Size(161, 20);
+            this.originalDBox1.TabIndex = 1;
+            // 
+            // addDButton
+            // 
+            this.addDButton.Location = new System.Drawing.Point(119, 147);
+            this.addDButton.Name = "addDButton";
+            this.addDButton.Size = new System.Drawing.Size(105, 40);
+            this.addDButton.TabIndex = 0;
+            this.addDButton.Text = "Добавить";
+            this.addDButton.UseVisualStyleBackColor = true;
+            this.addDButton.Click += new System.EventHandler(this.addDButton_Click);
+            // 
+            // tabPage21
+            // 
+            this.tabPage21.Controls.Add(this.label40);
+            this.tabPage21.Controls.Add(this.originalDBox2);
+            this.tabPage21.Controls.Add(this.updDButton);
+            this.tabPage21.Location = new System.Drawing.Point(4, 22);
+            this.tabPage21.Name = "tabPage21";
+            this.tabPage21.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage21.Size = new System.Drawing.Size(353, 353);
+            this.tabPage21.TabIndex = 1;
+            this.tabPage21.Text = "Изменение";
+            this.tabPage21.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(27, 60);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(65, 13);
+            this.label40.TabIndex = 3;
+            this.label40.Text = "Должность";
+            // 
+            // originalDBox2
+            // 
+            this.originalDBox2.Location = new System.Drawing.Point(162, 57);
+            this.originalDBox2.Name = "originalDBox2";
+            this.originalDBox2.Size = new System.Drawing.Size(161, 20);
+            this.originalDBox2.TabIndex = 1;
+            // 
+            // updDButton
+            // 
+            this.updDButton.Location = new System.Drawing.Point(119, 147);
+            this.updDButton.Name = "updDButton";
+            this.updDButton.Size = new System.Drawing.Size(105, 40);
+            this.updDButton.TabIndex = 0;
+            this.updDButton.Text = "Изменить";
+            this.updDButton.UseVisualStyleBackColor = true;
+            this.updDButton.Click += new System.EventHandler(this.updDButton_Click);
+            // 
+            // dataGridView7
+            // 
+            this.dataGridView7.AllowUserToAddRows = false;
+            this.dataGridView7.AllowUserToDeleteRows = false;
+            this.dataGridView7.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView7.Location = new System.Drawing.Point(373, 28);
+            this.dataGridView7.Name = "dataGridView7";
+            this.dataGridView7.ReadOnly = true;
+            this.dataGridView7.Size = new System.Drawing.Size(749, 301);
+            this.dataGridView7.TabIndex = 0;
+            this.dataGridView7.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView7_CellClick);
+            // 
+            // dBox
+            // 
+            this.dBox.FormattingEnabled = true;
+            this.dBox.Location = new System.Drawing.Point(162, 79);
+            this.dBox.Name = "dBox";
+            this.dBox.Size = new System.Drawing.Size(161, 21);
+            this.dBox.TabIndex = 13;
+            this.dBox.DropDown += new System.EventHandler(this.dBox_DropDown);
+            this.dBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
+            // 
+            // dBox1
+            // 
+            this.dBox1.FormattingEnabled = true;
+            this.dBox1.Location = new System.Drawing.Point(162, 79);
+            this.dBox1.Name = "dBox1";
+            this.dBox1.Size = new System.Drawing.Size(161, 21);
+            this.dBox1.TabIndex = 13;
+            this.dBox1.DropDown += new System.EventHandler(this.dBox_DropDown);
+            this.dBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
+            // 
+            // dBox2
+            // 
+            this.dBox2.FormattingEnabled = true;
+            this.dBox2.Location = new System.Drawing.Point(164, 257);
+            this.dBox2.Name = "dBox2";
+            this.dBox2.Size = new System.Drawing.Size(161, 21);
+            this.dBox2.TabIndex = 34;
+            this.dBox2.DropDown += new System.EventHandler(this.dBox_DropDown);
+            this.dBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
+            // 
+            // dBox3
+            // 
+            this.dBox3.FormattingEnabled = true;
+            this.dBox3.Location = new System.Drawing.Point(164, 257);
+            this.dBox3.Name = "dBox3";
+            this.dBox3.Size = new System.Drawing.Size(161, 21);
+            this.dBox3.TabIndex = 34;
+            this.dBox3.DropDown += new System.EventHandler(this.dBox_DropDown);
+            this.dBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SComboBox_KeyPress);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(162, 244);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(161, 74);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Тип вакансии";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 19);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(75, 17);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Открытая";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(6, 42);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(75, 17);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.Text = "Закрытая";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButton4);
+            this.groupBox2.Controls.Add(this.radioButton3);
+            this.groupBox2.Location = new System.Drawing.Point(162, 244);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(161, 74);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Тип вакансии";
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(6, 42);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(75, 17);
+            this.radioButton4.TabIndex = 1;
+            this.radioButton4.Text = "Закрытая";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Location = new System.Drawing.Point(6, 19);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(75, 17);
+            this.radioButton3.TabIndex = 0;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Открытая";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
             // ПросмотрТаблиц
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 602);
+            this.ClientSize = new System.Drawing.Size(1158, 602);
             this.Controls.Add(this.tabControl1);
             this.Name = "ПросмотрТаблиц";
             this.Text = "ПросмотрТаблиц";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ПросмотрТаблиц_FormClosed);
+            this.Shown += new System.EventHandler(this.ПросмотрТаблиц_Shown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
@@ -1930,6 +2209,17 @@
             this.tabPage18.ResumeLayout(false);
             this.tabPage18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
+            this.tabPage12.ResumeLayout(false);
+            this.tabControl8.ResumeLayout(false);
+            this.tabPage20.ResumeLayout(false);
+            this.tabPage20.PerformLayout();
+            this.tabPage21.ResumeLayout(false);
+            this.tabPage21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1992,7 +2282,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TextBox fBox2;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox dBox2;
         private System.Windows.Forms.TextBox obrBox;
         private System.Windows.Forms.TextBox oBox2;
         private System.Windows.Forms.Label label35;
@@ -2008,7 +2297,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox fBox3;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox dBox3;
         private System.Windows.Forms.TextBox obrBox1;
         private System.Windows.Forms.TextBox oBox3;
         private System.Windows.Forms.Label label27;
@@ -2054,7 +2342,6 @@
         private System.Windows.Forms.TextBox zpBox;
         private System.Windows.Forms.TextBox tuoBox;
         private System.Windows.Forms.TextBox kBox;
-        private System.Windows.Forms.TextBox dBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label18;
@@ -2066,7 +2353,6 @@
         private System.Windows.Forms.TextBox zpBox1;
         private System.Windows.Forms.TextBox tuoBox1;
         private System.Windows.Forms.TextBox kBox1;
-        private System.Windows.Forms.TextBox dBox1;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label55;
@@ -2099,5 +2385,28 @@
         private System.Windows.Forms.MaskedTextBox ktBox1;
         private System.Windows.Forms.MaskedTextBox tBox;
         private System.Windows.Forms.MaskedTextBox tBox1;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.Button showButton7;
+        private System.Windows.Forms.Button delButton7;
+        private System.Windows.Forms.TabControl tabControl8;
+        private System.Windows.Forms.TabPage tabPage20;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox originalDBox1;
+        private System.Windows.Forms.Button addDButton;
+        private System.Windows.Forms.TabPage tabPage21;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox originalDBox2;
+        private System.Windows.Forms.Button updDButton;
+        private System.Windows.Forms.DataGridView dataGridView7;
+        private System.Windows.Forms.ComboBox dBox;
+        private System.Windows.Forms.ComboBox dBox1;
+        private System.Windows.Forms.ComboBox dBox2;
+        private System.Windows.Forms.ComboBox dBox3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
     }
 }

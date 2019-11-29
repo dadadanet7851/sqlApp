@@ -84,30 +84,6 @@
     <Compile Include="Главная.Designer.cs">
       <DependentUpon>Главная.cs</DependentUpon>
     </Compile>
-    <Compile Include="Добавление.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Добавление.Designer.cs">
-      <DependentUpon>Добавление.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ДобавлениеАгента.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ДобавлениеАгента.Designer.cs">
-      <DependentUpon>ДобавлениеАгента.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ДобавлениеВакансии.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ДобавлениеВакансии.Designer.cs">
-      <DependentUpon>ДобавлениеВакансии.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ДобавлениеРаботодателя.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ДобавлениеРаботодателя.Designer.cs">
-      <DependentUpon>ДобавлениеРаботодателя.cs</DependentUpon>
-    </Compile>
     <Compile Include="Запросы.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,12 +95,6 @@
     </Compile>
     <Compile Include="ПросмотрТаблиц.Designer.cs">
       <DependentUpon>ПросмотрТаблиц.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ТестДроп.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ТестДроп.Designer.cs">
-      <DependentUpon>ТестДроп.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DBConnectionForm.resx">
       <DependentUpon>DBConnectionForm.cs</DependentUpon>
@@ -153,26 +123,11 @@
     <EmbeddedResource Include="Главная.resx">
       <DependentUpon>Главная.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Добавление.resx">
-      <DependentUpon>Добавление.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ДобавлениеАгента.resx">
-      <DependentUpon>ДобавлениеАгента.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ДобавлениеВакансии.resx">
-      <DependentUpon>ДобавлениеВакансии.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ДобавлениеРаботодателя.resx">
-      <DependentUpon>ДобавлениеРаботодателя.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Запросы.resx">
       <DependentUpon>Запросы.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ПросмотрТаблиц.resx">
       <DependentUpon>ПросмотрТаблиц.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ТестДроп.resx">
-      <DependentUpon>ТестДроп.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

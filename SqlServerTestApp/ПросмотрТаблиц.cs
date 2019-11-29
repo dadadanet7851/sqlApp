@@ -12,11 +12,29 @@ namespace SqlServerTestApp
 {
     public partial class ПросмотрТаблиц : Form
     {
-        public char PromptChar { get; set; } // Это используется??
 
-        [DllImport("user32.dll")]                  // Каретка
+        bool tip1;
+        bool tip2;
 
-        static extern bool HideCaret(IntPtr hWnd); // Каретка
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            tip1 = true;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            tip1 = false;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            tip2 = true;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            tip2 = false;
+        }
 
         public ПросмотрТаблиц()
         {
@@ -27,6 +45,44 @@ namespace SqlServerTestApp
             dataGridView4.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView5.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView6.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView7.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        private void ПросмотрТаблиц_Shown(object sender, EventArgs e)                                                 // Показ таблицы при загрузке формы
+        {
+            showButton1.PerformClick();
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)                                     // Показ таблиц при выборе вкладки
+        {
+            if (tabControl1.SelectedIndex == 0)
+            {
+                showButton1.PerformClick();
+            }
+            if (tabControl1.SelectedIndex == 1)
+            {
+                showButton2.PerformClick();
+            }
+            if (tabControl1.SelectedIndex == 2)
+            {
+                showButton3.PerformClick();
+            }
+            if (tabControl1.SelectedIndex == 3)
+            {
+                showButton4.PerformClick();
+            }
+            if (tabControl1.SelectedIndex == 4)
+            {
+                showButton5.PerformClick();
+            }
+            if (tabControl1.SelectedIndex == 5)
+            {
+                showButton6.PerformClick();
+            }
+            if (tabControl1.SelectedIndex == 6)
+            {
+                showButton7.PerformClick();
+            }
         }
 
         private void ПросмотрТаблиц_FormClosed(object sender, FormClosedEventArgs e)
@@ -68,12 +124,13 @@ namespace SqlServerTestApp
             dataGridView2.Columns.Clear();
             dataGridView2.Columns.Add("id работодателя", "id работодателя");
             dataGridView2.Columns.Add("Название предприятия", "Название предприятия");
-            dataGridView2.Columns.Add("id деятельности", "id деятельности");
+            dataGridView2.Columns.Add("Вид деятельности", "Вид деятельности");
             dataGridView2.Columns.Add("Адрес", "Адрес");
             dataGridView2.Columns.Add("Телефон", "Телефон");
             foreach (var row in list)
             {
-                dataGridView2.Rows.Add(row[0], row[1], row[2], row[3], row[4]);
+                IdentityItem row2 = DBConnectionService.SendQueryToSqlServer("select [id деятельности], [Вид деятельности] from [Виды деятельности] where [id деятельности] = " + row[2]).Select(f => new IdentityItem(f[0], f[1])).FirstOrDefault();
+                dataGridView2.Rows.Add(row[0], row[1], row2, row[3], row[4]);
             }
             dataGridView2.Refresh();
         }
@@ -89,14 +146,17 @@ namespace SqlServerTestApp
             dataGridView3.Rows.Clear();
             dataGridView3.Columns.Clear();
             dataGridView3.Columns.Add("id вакансии", "id вакансии");
-            dataGridView3.Columns.Add("id работодателя", "id работодателя");
+            dataGridView3.Columns.Add("Название предприятия", "Название предприятия");
             dataGridView3.Columns.Add("Должность", "Должность");
             dataGridView3.Columns.Add("Требуемый уровень образования", "Требуемый уровень образования");
             dataGridView3.Columns.Add("Квалификация", "Квалификация");
             dataGridView3.Columns.Add("Заработная плата", "Заработная плата");
+            dataGridView3.Columns.Add("Открытая", "Открытая");
             foreach (var row in list)
             {
-                dataGridView3.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5]);
+                IdentityItem row1 = DBConnectionService.SendQueryToSqlServer("select [id работодателя], [Название предприятия] from Работодатели where [id работодателя] = " + row[1]).Select(f => new IdentityItem(f[0], f[1])).FirstOrDefault();
+                IdentityItem row2 = DBConnectionService.SendQueryToSqlServer("select [id должности], Должность from Должности where [id должности] = " + row[2]).Select(f => new IdentityItem(f[0], f[1])).FirstOrDefault();
+                dataGridView3.Rows.Add(row[0], row1, row2, row[3], row[4], row[5], row[6]);
             }
             dataGridView3.Refresh();
         }
@@ -122,7 +182,8 @@ namespace SqlServerTestApp
             dataGridView4.Columns.Add("Предполагаемый размер заработной платы", "Предполагаемый размер заработной платы");
             foreach (var row in list)
             {
-                dataGridView4.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]);
+                IdentityItem row6 = DBConnectionService.SendQueryToSqlServer("select [id должности], Должность from Должности where [id должности] = " + row[6]).Select(f => new IdentityItem(f[0], f[1])).FirstOrDefault();
+                dataGridView4.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5], row6, row[7], row[8]);
             }
             dataGridView4.Refresh();
         }
@@ -138,14 +199,19 @@ namespace SqlServerTestApp
             dataGridView5.Rows.Clear();
             dataGridView5.Columns.Clear();
             dataGridView5.Columns.Add("id сделки", "id сделки");
-            dataGridView5.Columns.Add("id соискателя", "id соискателя");
-            dataGridView5.Columns.Add("id вакансии", "id вакансии");
-            dataGridView5.Columns.Add("id агента", "id агента");
+            dataGridView5.Columns.Add("Соискатель", "Соискатель");
+            dataGridView5.Columns.Add("Вакансия", "Вакансия");
+            dataGridView5.Columns.Add("Агент", "Агент");
             dataGridView5.Columns.Add("Дата заключения", "Дата заключения");
             dataGridView5.Columns.Add("Комиссионные", "Комиссионные");
+
+
             foreach (var row in list)
             {
-                dataGridView5.Rows.Add(row[0], row[1], row[2], row[3], row[4], row[5]);
+                IdentityItem row1 = DBConnectionService.SendQueryToSqlServer("select [id соискателя], (Фамилия+' '+Имя+' '+Отчество) from Соискатели where [id соискателя] = " + row[1]).Select(f => new IdentityItem(f[0], f[1])).FirstOrDefault();
+                IdentityItem row2 = DBConnectionService.SendQueryToSqlServer("select [id вакансии], ([Должность]+' '+[Заработная плата]) from Вакансии, Должности where [id вакансии] = " + row[2]).Select(f => new IdentityItem(f[0], f[1])).FirstOrDefault();
+                IdentityItem row3 = DBConnectionService.SendQueryToSqlServer("select [id агента], (Фамилия+' '+[Контактный телефон]) from [Агенты бюро] where [id агента] = " + row[3]).Select(f => new IdentityItem(f[0], f[1])).FirstOrDefault();
+                dataGridView5.Rows.Add(row[0], row1, row2, row3, row[4], row[5]);
             }
             dataGridView5.Refresh();
         }
@@ -167,6 +233,25 @@ namespace SqlServerTestApp
                 dataGridView6.Rows.Add(row[0], row[1]);
             }
             dataGridView6.Refresh();
+        }
+
+        private void showButton7_Click(object sender, EventArgs e)
+        {
+            string query = "select * from [Должности]";
+            var list = DBConnectionService.SendQueryToSqlServer(query);
+            if (list == null || !list.Any())
+            {
+                return;
+            }
+            dataGridView7.Rows.Clear();
+            dataGridView7.Columns.Clear();
+            dataGridView7.Columns.Add("id должности", "id должности");
+            dataGridView7.Columns.Add("Должность", "Должность");
+            foreach (var row in list)
+            {
+                dataGridView7.Rows.Add(row[0], row[1]);
+            }
+            dataGridView7.Refresh();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)                          // Вывод значений строки таблицы на поля вкладки изменения
@@ -192,6 +277,9 @@ namespace SqlServerTestApp
             tuoBox1.Text = dataGridView3.CurrentRow.Cells[3].Value.ToString();
             kBox1.Text = dataGridView3.CurrentRow.Cells[4].Value.ToString();
             zpBox1.Text = dataGridView3.CurrentRow.Cells[5].Value.ToString();
+            if (dataGridView3.CurrentRow.Cells[6].Value.ToString() == "True") radioButton3.PerformClick();
+            if (dataGridView3.CurrentRow.Cells[6].Value.ToString() == "False") radioButton4.PerformClick();
+
         }
 
         private void dataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -206,11 +294,10 @@ namespace SqlServerTestApp
             przpBox1.Text = dataGridView4.CurrentRow.Cells[8].Value.ToString();
         }
 
-        private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)                                   // ЭТО НЕ РАБОТАЕТ
+        private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var items = DBConnectionService.SendQueryToSqlServer($"select [id соискателя], (Фамилия+' '+Имя+' '+Отчество) from Соискатели " +
-                $"where [id соискателя] = {dataGridView5.CurrentRow.Cells[1].Value}")?.Select(row => new IdentityItem(row[0], row[1]));
-            SComboBox1.SelectedItem = items.FirstOrDefault();
+            
+            SComboBox1.Text = dataGridView5.CurrentRow.Cells[1].Value.ToString();
             VComboBox1.Text = dataGridView5.CurrentRow.Cells[2].Value.ToString();
             AComboBox1.Text = dataGridView5.CurrentRow.Cells[3].Value.ToString();
             dateTimePicker4.Value = Convert.ToDateTime(dataGridView5.CurrentRow.Cells[4].Value);
@@ -220,6 +307,11 @@ namespace SqlServerTestApp
         private void dataGridView6_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             vdBox1.Text = dataGridView6.CurrentRow.Cells[1].Value.ToString();
+        }
+
+        private void dataGridView7_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            originalDBox2.Text = dataGridView6.CurrentRow.Cells[1].Value.ToString();
         }
 
         private void delButton1_Click(object sender, EventArgs e)                                                           // Кнопки удалений
@@ -288,6 +380,17 @@ namespace SqlServerTestApp
             }
         }
 
+        private void delButton7_Click(object sender, EventArgs e)
+        {
+            int n = int.Parse(dataGridView7.CurrentRow.Cells[0].Value.ToString());
+            string query = "DELETE FROM [Должности] WHERE [id должности] = '" + n + "'";
+            int? result = DBConnectionService.SendCommandToSqlServer(query);
+            if (result != null && result > 0)
+            {
+                MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void addAgentButton_Click(object sender, EventArgs e)                                                    // Агенты бюро (Добавление)
         {
             string f = null;
@@ -306,13 +409,22 @@ namespace SqlServerTestApp
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            string query = "insert into [Агенты бюро] (Фамилия, Имя, Отчество, [Контактный телефон])" +
-                "values (" + $"'{f}','{i}','{o}','{kt}'" + ")";
-            int? result = DBConnectionService.SendCommandToSqlServer(query);
-            if (result != null && result > 0)
+            if (fBox.Text != String.Empty && iBox.Text != String.Empty && oBox.Text != String.Empty)
             {
-                MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string query = "insert into [Агенты бюро] (Фамилия, Имя, Отчество, [Контактный телефон])" +
+                "values (" + $"'{f}','{i}','{o}','{kt}'" + ")";
+                int? result = DBConnectionService.SendCommandToSqlServer(query);
+                if (result != null && result > 0)
+                {
+                    MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    showButton1.PerformClick();
+                    fBox.Clear();
+                    iBox.Clear();
+                    oBox.Clear();
+                    ktBox.Clear();
+                }
             }
+            else MessageBox.Show("Не все поля заполнены");
         }
 
         private void updAgentButton_Click(object sender, EventArgs e)                                                  // Агенты бюро (Изменение)
@@ -340,6 +452,7 @@ namespace SqlServerTestApp
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton1.PerformClick();
             }
         }
 
@@ -367,6 +480,11 @@ namespace SqlServerTestApp
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton2.PerformClick();
+                npBox.Clear();
+                vdComboBox.SelectedIndex = -1;
+                aBox.Clear();
+                tBox.Clear();
             }
         }
 
@@ -403,20 +521,21 @@ namespace SqlServerTestApp
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton2.PerformClick();
             }
         }
 
         private void addVButton_Click(object sender, EventArgs e)                                                                // Вакансии (Добавление)
         {
             int? np = null;
-            string d = null;
+            int? d = null;
             string tuo = null;
             string k = null;
             string zp = null;
             try
             {
                 np = Convert.ToInt32((npComboBox.SelectedItem as IdentityItem)?.Id);
-                d = dBox.Text;
+                d = Convert.ToInt32((dBox.SelectedItem as IdentityItem)?.Id);
                 tuo = tuoBox.Text;
                 k = kBox.Text;
                 zp = zpBox.Text;
@@ -426,12 +545,19 @@ namespace SqlServerTestApp
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            string query = "insert into Вакансии ([id работодателя], Должность, [Требуемый уровень образования], Квалификация, [Заработная плата])" +
-                "values (" + $"'{np}','{d}','{tuo}','{k}','{zp}'" + ")";
+
+            string query = "insert into Вакансии ([id работодателя], [id должности], [Требуемый уровень образования], Квалификация, [Заработная плата], Открытая)" +
+                "values (" + $"'{np}','{d}','{tuo}','{k}','{zp}','{tip1}'" + ")";
             int? result = DBConnectionService.SendCommandToSqlServer(query);
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton3.PerformClick();
+                npComboBox.SelectedIndex = -1;
+                dBox.SelectedIndex = -1;
+                tuoBox.Clear();
+                kBox.Clear();
+                zpBox.Clear();
             }
         }
 
@@ -443,17 +569,25 @@ namespace SqlServerTestApp
             ((ComboBox)sender).Items.AddRange(list);
         }
 
+        private void dBox_DropDown(object sender, EventArgs e)                                                                 // Комбобокс "Должности"
+        {
+            string query = "select [id должности], Должность from Должности";
+            var list = DBConnectionService.SendQueryToSqlServer(query)?.Select(row => new IdentityItem(row[0], row[1])).ToArray();
+            ((ComboBox)sender).Items.Clear();
+            ((ComboBox)sender).Items.AddRange(list);
+        }
+
         private void updVButton_Click(object sender, EventArgs e)                                                               // Вакансии (Изменение)
         {
             int? np = null;
-            string d = null;
+            int? d = null;
             string tuo = null;
             string k = null;
             string zp = null;
             try
             {
                 np = Convert.ToInt32((npComboBox1.SelectedItem as IdentityItem)?.Id);
-                d = dBox1.Text;
+                d = Convert.ToInt32((dBox1.SelectedItem as IdentityItem)?.Id);
                 tuo = tuoBox1.Text;
                 k = kBox1.Text;
                 zp = zpBox1.Text;
@@ -464,13 +598,14 @@ namespace SqlServerTestApp
                 return;
             }
             int n = int.Parse(dataGridView3.CurrentRow.Cells[0].Value.ToString());
-            string query = "UPDATE Вакансии SET [id работодателя] = '" + np + "', Должность = '" + d + "'" +
-                ", [Требуемый уровень образования] = '" + tuo + "', [Квалификация] = '" + k + "', [Заработная плата] = '" + zp + "'" +
+            string query = "UPDATE Вакансии SET [id работодателя] = '" + np + "', [id должности] = '" + d + "'" +
+                ", [Требуемый уровень образования] = '" + tuo + "', [Квалификация] = '" + k + "', [Заработная плата] = '" + zp + "', Открытая = '" + tip2 + "'" +
                 "WHERE [id вакансии] = '" + n + "'";
             int? result = DBConnectionService.SendCommandToSqlServer(query);
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton3.PerformClick();
             }
         }
 
@@ -481,7 +616,7 @@ namespace SqlServerTestApp
             string o = null;
             DateTime gr;
             string obr = null;
-            string d = null;
+            int? d = null;
             string k = null;
             string przr = null;
             try
@@ -491,7 +626,7 @@ namespace SqlServerTestApp
                 o = oBox2.Text;
                 gr = dateTimePicker1.Value;
                 obr = obrBox.Text;
-                d = dBox2.Text;
+                d = Convert.ToInt32((dBox2.SelectedItem as IdentityItem)?.Id);
                 k = kBox2.Text;
                 przr = przpBox.Text;
             }
@@ -500,12 +635,21 @@ namespace SqlServerTestApp
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            string query = "insert into Соискатели (Фамилия, Имя, Отчество, [Год рождения], Образование, Должность, Квалификация, [Предполагаемый размер заработной платы])" +
+            string query = "insert into Соискатели (Фамилия, Имя, Отчество, [Год рождения], Образование, [id должности], Квалификация, [Предполагаемый размер заработной платы])" +
                 "values (" + $"'{f}','{i}','{o}','{gr}','{obr}','{d}','{k}','{przr}'" + ")";
             int? result = DBConnectionService.SendCommandToSqlServer(query);
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton4.PerformClick();
+                fBox2.Clear();
+                iBox2.Clear();
+                oBox2.Clear();
+                dateTimePicker1.Value = DateTime.Now;
+                obrBox.Clear();
+                dBox2.SelectedIndex = -1;
+                kBox2.Clear();
+                przpBox.Clear();
             }
         }
 
@@ -516,7 +660,7 @@ namespace SqlServerTestApp
             string o = null;
             DateTime gr;
             string obr = null;
-            string d = null;
+            int? d = null;
             string k = null;
             string przr = null;
             try
@@ -526,7 +670,7 @@ namespace SqlServerTestApp
                 o = oBox3.Text;
                 gr = dateTimePicker2.Value;
                 obr = obrBox1.Text;
-                d = dBox3.Text;
+                d = Convert.ToInt32((dBox3.SelectedItem as IdentityItem)?.Id);
                 k = kBox3.Text;
                 przr = przpBox1.Text;
             }
@@ -537,13 +681,14 @@ namespace SqlServerTestApp
             }
             int n = int.Parse(dataGridView4.CurrentRow.Cells[0].Value.ToString());
             string query = "UPDATE Соискатели SET Фамилия = '" + f + "', Имя = '" + i + "', Отчество = '" + o + "'" +
-                ", [Год рождения] = '" + gr + "', Образование = '" + obr + "', Должность = '" + d + "'" +
+                ", [Год рождения] = '" + gr + "', Образование = '" + obr + "', [id должности] = '" + d + "'" +
                 ", Квалификация = '" + k + "', [Предполагаемый размер заработной платы] = '" + przr + "'" +
                 "WHERE [id соискателя] = '" + n + "'";
             int? result = DBConnectionService.SendCommandToSqlServer(query);
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton4.PerformClick();
             }
         }
 
@@ -573,6 +718,12 @@ namespace SqlServerTestApp
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton5.PerformClick();
+                dateTimePicker3.Value = DateTime.Now;
+                SComboBox.SelectedIndex = -1;
+                VComboBox.SelectedIndex = -1;
+                AComboBox.SelectedIndex = -1;
+                kmsBox.Clear();
             }
         }
 
@@ -586,7 +737,7 @@ namespace SqlServerTestApp
 
         private void VComboBox_DropDown(object sender, EventArgs e)                                                         // Комбобокс "Вакансия"
         {
-            string query = "select [id вакансии], Должность from Вакансии";
+            string query = "select [id вакансии], ([Должность]+' '+[Заработная плата]) from Вакансии, Должности";
             var list = DBConnectionService.SendQueryToSqlServer(query)?.Select(row => new IdentityItem(row[0], row[1])).ToArray();
             ((ComboBox)sender).Items.Clear();
             ((ComboBox)sender).Items.AddRange(list);
@@ -627,6 +778,7 @@ namespace SqlServerTestApp
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton5.PerformClick();
             }
         }
 
@@ -648,6 +800,8 @@ namespace SqlServerTestApp
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton6.PerformClick();
+                vdBox.Clear();
             }
         }
 
@@ -670,6 +824,53 @@ namespace SqlServerTestApp
             if (result != null && result > 0)
             {
                 MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton6.PerformClick();
+            }
+        }
+
+        private void addDButton_Click(object sender, EventArgs e)                                                             // Должности (Добавление)
+        {
+            string d = null;
+            try
+            {
+                d = originalDBox1.Text;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string query = "insert into Должности (Должность)" +
+                "values ('" + d + "')";
+            int? result = DBConnectionService.SendCommandToSqlServer(query);
+            if (result != null && result > 0)
+            {
+                MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton7.PerformClick();
+                originalDBox1.Clear();
+            }
+        }
+
+        private void updDButton_Click(object sender, EventArgs e)                                                             // Должности (Изменение)
+        {
+            string d = null;
+            try
+            {
+                d = originalDBox2.Text;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int n = int.Parse(dataGridView7.CurrentRow.Cells[0].Value.ToString());
+            string query = "UPDATE Должности SET Должность = '" + d + "'" +
+                "WHERE [id должности] = '" + n + "'";
+            int? result = DBConnectionService.SendCommandToSqlServer(query);
+            if (result != null && result > 0)
+            {
+                MessageBox.Show("Done", "Saving object", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                showButton7.PerformClick();
             }
         }
 
@@ -692,7 +893,6 @@ namespace SqlServerTestApp
 
         private void fio_TextChanged(object sender, EventArgs e)                                                      // Ввод с заглавной
         {
-            HideCaret(((TextBox)sender).Handle);
             if (((TextBox)sender).Text.Length == 1)
                 ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
             ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
@@ -765,9 +965,9 @@ namespace SqlServerTestApp
             }
         }
 
-        public void Other_TextChanged(object sender, EventArgs e)                                         // Скрыть каретку при вводе на полях, где нет своего TextChanged (кроме MaskedBox)
+        private void SComboBox_KeyPress(object sender, KeyPressEventArgs e)                                // Запрет ввода в комбобокс
         {
-            HideCaret(((TextBox)sender).Handle);
+            e.Handled = true;
         }
     }
 }

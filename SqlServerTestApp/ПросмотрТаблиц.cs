@@ -311,7 +311,7 @@ namespace SqlServerTestApp
 
         private void dataGridView7_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            originalDBox2.Text = dataGridView6.CurrentRow.Cells[1].Value.ToString();
+            originalDBox2.Text = dataGridView7.CurrentRow.Cells[1].Value.ToString();
         }
 
         private void delButton1_Click(object sender, EventArgs e)                                                           // Кнопки удалений
@@ -737,7 +737,7 @@ namespace SqlServerTestApp
 
         private void VComboBox_DropDown(object sender, EventArgs e)                                                         // Комбобокс "Вакансия"
         {
-            string query = "select [id вакансии], ([Должность]+' '+[Заработная плата]) from Вакансии, Должности";
+            string query = "select Вакансии.[id вакансии], (Должности.[Должность]+' '+Вакансии.[Заработная плата]) from Вакансии Join Должности on Вакансии.[id должности] = Должности.[id должности]";
             var list = DBConnectionService.SendQueryToSqlServer(query)?.Select(row => new IdentityItem(row[0], row[1])).ToArray();
             ((ComboBox)sender).Items.Clear();
             ((ComboBox)sender).Items.AddRange(list);

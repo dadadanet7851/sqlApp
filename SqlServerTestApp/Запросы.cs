@@ -73,7 +73,7 @@ namespace SqlServerTestApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string query = "SELECT COUNT (*) FROM Вакансии WHERE [id работодателя] = 2002";
+            string query = "SELECT COUNT (*) FROM Вакансии Join Работодатели on Вакансии.[id работодателя] = Работодатели.[id работодателя] WHERE Работодатели.[Название предприятия] = 'Рога и копыта'";
             var list = DBConnectionService.SendQueryToSqlServer(query);
             if (list == null || !list.Any())
             {
@@ -91,7 +91,7 @@ namespace SqlServerTestApp
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string query = "SELECT COUNT (*) FROM Вакансии WHERE ([id должности] = 1) AND (Открытая = 1)";
+            string query = "SELECT COUNT (*) FROM Вакансии Join Должности on Вакансии.[id должности] = Должности.[id должности] WHERE([Должность] = 'Инженер-программист') AND(Открытая = 1)";
             var list = DBConnectionService.SendQueryToSqlServer(query);
             if (list == null || !list.Any())
             {
